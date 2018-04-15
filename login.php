@@ -81,13 +81,12 @@
 				
 				
 				<label>Password:</label><br/>
-				<input type="password" class="inputFields"  name="password" required/><br/><br/>
-				
+				<input type="password" class="inputFields"  name="password" required/><br/><br/>			
 				
 			   
 				<input type="submit" name="submit" class="theButtons" value="login" />
 
-				
+				<a href="fbsignup.php">Sign Up with FaceBook</a>
 				
 				</form>
 			

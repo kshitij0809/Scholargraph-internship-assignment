@@ -1,7 +1,7 @@
 <?php
 
 	include("connect.php");
-	include("functions.php");
+	include("fbfunctions.php");
 	if(logged_in())
 	{
 		header("location:profile.php");
@@ -12,7 +12,7 @@
 
 	if(isset($_POST['submit']))
 	{
-		$firstName = mysqli_real_escape_string($con, $_POST['fname']);
+		$fname = mysqli_real_escape_string($con, $_POST['fname']);
 	    $email = mysqli_real_escape_string($con, $_POST['email']);
 	    $password = $_POST['password'];
 	    $passwordConfirm = $_POST['passwordConfirm'];
@@ -21,7 +21,7 @@
       
 		
 		
-		if(strlen($firstName) < 3)
+		if(strlen($fname) < 3)
 		{
 			$error = "First name is too short";
 		}
@@ -49,7 +49,7 @@
 				$password = password_hash($password, PASSWORD_DEFAULT);
 				
 				
-					$insertQuery = "INSERT INTO `users`(`firstName`, `email`, `password`) VALUES ('$firstName','$email','$password')";
+					$insertQuery = "INSERT INTO `fbusers`(`fname`, `email`, `password`) VALUES ('$fname','$email','$password')";
 
 
 					if(mysqli_query($con, $insertQuery))
@@ -72,7 +72,7 @@
 	
 	<head>
 		
-	<title>Registration Page</title>
+	<title>FaceBook Registration Page</title>
 	<link rel="stylesheet" href="css/styles.css"  />
 	
 	</head>
@@ -85,13 +85,13 @@
 		<div id="wrapper">
 			
 			<div id="menu">
-				<a href="index.php">Sign Up</a>
-				<a href="login.php">Login</a>
+				<a href="fbsignup.php">Sign Up With FaceBook</a>
+				<a href="fblogin.php">Login With FaceBook</a>
 			</div>
 			
 			<div id="formDiv">
 				
-				<form method="POST" action="index.php" enctype="multipart/form-data">
+				<form method="POST" action="fbsignup.php" enctype="multipart/form-data">
 				
 				<label>First Name:</label><br/>
 				<input type="text" name="fname" class="inputFields" required/><br/><br/>
@@ -110,8 +110,8 @@
 			
 				
 				<input type="submit"  class="theButtons"  name="submit" />
-                <a href="fbsignup.php">Sign Up with FaceBook</a>
-				
+
+				<a href="index.php">Sign Up Directly</a>
 				
 				</form>
 			
