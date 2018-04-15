@@ -16,7 +16,7 @@
 	    $email = mysqli_real_escape_string($con, $_POST['email']);
 	    $password = $_POST['password'];
 	    $passwordConfirm = $_POST['passwordConfirm'];
-	    
+	    $token=$_POST['token'];
 
       
 		
@@ -43,7 +43,11 @@
 		{
 			$error = "Password does not match";
 		}
-		
+		else if($token!='fbjwt'){
+
+				$error = "Token is incorrect";			
+
+			}
 		else
 		{	
 				$password = password_hash($password, PASSWORD_DEFAULT);
@@ -55,7 +59,8 @@
 					if(mysqli_query($con, $insertQuery))
 					{
 						
-							$error = "You are successfully registered";					
+							$error = "You are successfully registered";	
+
 				
 				    }
 		}
@@ -100,7 +105,9 @@
 				
 				<label>Email:</label><br/>
 				<input type="text" name="email"  class="inputFields" required/><br/><br/>
-
+                 
+                <label>FB Token:</label><br/>
+				<input type="text" class="inputFields"  name="token" required/><br/><br/>
 			
 				<label>Password:</label><br/>
 				<input type="password" name="password" class="inputFields"  required/><br/><br/>

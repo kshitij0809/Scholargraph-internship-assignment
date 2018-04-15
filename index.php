@@ -55,7 +55,8 @@
 					if(mysqli_query($con, $insertQuery))
 					{
 						
-							$error = "You are successfully registered";					
+							$error = "You are successfully registered";	
+											
 				
 				    }
 		}
