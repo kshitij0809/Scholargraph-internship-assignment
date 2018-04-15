@@ -2,7 +2,7 @@
 
 	include("connect.php");
 	include("fbfunctions.php");
-	if(logged_in())
+	if(fblogged_in())
 	{
 		header("location:profile.php");
 		exit();
@@ -31,7 +31,7 @@
 		{
 			$error = "Please enter valid email address";
 		}
-		else if(email_exists($email, $con))
+		else if(fb_email_exists($email, $con))
 		{
 			$error = "Someone is already registered with this email";
 		}

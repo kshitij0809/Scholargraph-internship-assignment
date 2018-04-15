@@ -1,6 +1,6 @@
 <?php 
 	
-	function email_exists($email, $con)
+	function fb_email_exists($email, $con)
 	{
 		
 		$result = mysqli_query($con,"SELECT id FROM fbusers WHERE email='$email'");
@@ -17,9 +17,10 @@
 	}
 	
 	
-	function logged_in()
+	function fblogged_in()
 	{
-			if(isset($_SESSION['email']) || isset($_COOKIE['email']))
+
+			if((isset($_SESSION['email']) || isset($_COOKIE['email']))&& (isset($_SESSION['token'])))
 			{
 				return true;
 			}

@@ -2,7 +2,7 @@
 	include("connect.php");
 	include("fbfunctions.php");
 	
-	if(logged_in())
+	if(fblogged_in())
 	{
 		header("location:profile.php");
 		exit();
@@ -13,9 +13,10 @@
 	{
 	
 	    $email = mysqli_real_escape_string($con, $_POST['email']);
+	    $token=$_POST['token'];
 	    $password = mysqli_real_escape_string($con, $_POST['password']);
 		$password = trim($_POST['password']);
-		if(email_exists($email,$con))
+		if(fb_email_exists($email,$con))
 		{
 			$result = mysqli_query($con, "SELECT password FROM users WHERE email='$email'");
 			$retrievepassword = mysqli_fetch_assoc($result);
@@ -26,10 +27,18 @@
 				echo $retrievepassword['password'];
 				$error = "Password is incorrect";
 			}
+			else if($token!='fbjwt'){
+				$error = "Token is incorrect";
+				$_SESSION['token'] =$token;
+				echo $_SESSION['token'];
+
+			}
 			else
 			{
 				$_SESSION['email'] = $email;
-				
+				$_SESSION['token'] =$token;
+				echo $_SESSION['email'];
+                echo $_SESSION['token'];
 				
 				setcookie("email",$email, time()+3600);
 				
@@ -78,6 +87,9 @@
 				
 				<label>Email:</label><br/>
 				<input type="text" class="inputFields"  name="email" required/><br/><br/>
+
+				<label>FB Token:</label><br/>
+				<input type="text" class="inputFields"  name="token" required/><br/><br/>
 				
 				
 				<label>Password:</label><br/>
