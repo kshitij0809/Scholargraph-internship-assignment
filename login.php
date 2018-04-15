@@ -3,7 +3,56 @@
 	include("connect.php");
 	include("functions.php");
 	
+	if(logged_in())
+	{
+		header("location:profile.php");
+		exit();
+	}
 	
+	$error = "";
+
+	if(isset($_POST['submit']))
+	{   
+		print_r($_SESSION);
+	
+	    $email = mysqli_real_escape_string($con, $_POST['email']);
+	    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+		$checkBox = isset($_POST['keep']);
+		
+		if(email_exists($email,$con))
+		{
+			$result = mysqli_query($con, "SELECT password FROM users WHERE email='$email'");
+			$retrievepassword = mysqli_fetch_assoc($result);
+			if($password!= $retrievepassword['password'])
+			{
+				echo $password;
+				echo "<br/>";
+				echo $retrievepassword['password'];
+				echo "nahi";
+				$error = "Password is incorrect";
+			}
+			else
+			{
+				$_SESSION['email'] = $email;
+				
+				if($checkBox == "on")
+				{
+					setcookie("email",$email, time()+3600);
+				}
+				
+				header("location: profile.php");
+			}
+			
+			
+		}
+		else
+		{
+			$error = "Email Does not exists";
+		}
+		
+	
+	}
 
 ?>
 
