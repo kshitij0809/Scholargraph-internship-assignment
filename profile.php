@@ -14,7 +14,6 @@
 	
 	</head>
 		<h3>You Are Logged In Successfully with FaceBook</h3>
-		<a href="changepassword.php">Change Password</a>
 		<a href="logout.php" style="float:right; padding:10px; margin-right:40px; background-color:#eee; color:#333; text-decoration:none;">Logout</a>
 	
 	<?php 
@@ -30,7 +29,6 @@
 	
 	</head>
 		<h3>You Are Logged In Successfully</h3>
-		<a href="changepassword.php">Change Password</a>
 		<a href="logout.php" style="float:right; padding:10px; margin-right:40px; background-color:#eee; color:#333; text-decoration:none;">Logout</a>
 	
 	<?php 

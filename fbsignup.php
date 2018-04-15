@@ -92,6 +92,7 @@
 			<div id="menu">
 				<a href="fbsignup.php">Sign Up With FaceBook</a>
 				<a href="fblogin.php">Login With FaceBook</a>
+				<p>FB SIGNUP TOKEN IS: fbjwt</p>
 			</div>
 			
 			<div id="formDiv">

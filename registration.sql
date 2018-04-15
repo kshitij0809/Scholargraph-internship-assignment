@@ -52,11 +52,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstName`, `email`, `password`) VALUES
-(12, 'Kshitij', 'kshitijpratap0809@gmail.com', '$2y$10$74c'),
-(13, 'ganesh', 'ganeshyogiraj7@gmail.com', '$2y$10$dEo');
 
---
 -- Indexes for dumped tables
 --
 
