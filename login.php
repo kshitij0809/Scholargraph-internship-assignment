@@ -1,5 +1,4 @@
 <?php
-
 	include("connect.php");
 	include("functions.php");
 	
@@ -10,36 +9,29 @@
 	}
 	
 	$error = "";
-
 	if(isset($_POST['submit']))
-	{   
-		print_r($_SESSION);
+	{
 	
 	    $email = mysqli_real_escape_string($con, $_POST['email']);
 	    $password = mysqli_real_escape_string($con, $_POST['password']);
-
-		$checkBox = isset($_POST['keep']);
-		
+		$password = trim($_POST['password']);
 		if(email_exists($email,$con))
 		{
 			$result = mysqli_query($con, "SELECT password FROM users WHERE email='$email'");
 			$retrievepassword = mysqli_fetch_assoc($result);
-			if($password!= $retrievepassword['password'])
+			if(password_verify($password, $retrievepassword))
 			{
 				echo $password;
 				echo "<br/>";
 				echo $retrievepassword['password'];
-				echo "nahi";
 				$error = "Password is incorrect";
 			}
 			else
 			{
 				$_SESSION['email'] = $email;
 				
-				if($checkBox == "on")
-				{
-					setcookie("email",$email, time()+3600);
-				}
+				
+				setcookie("email",$email, time()+3600);
 				
 				header("location: profile.php");
 			}
@@ -53,7 +45,6 @@
 		
 	
 	}
-
 ?>
 
 
@@ -86,14 +77,13 @@
 				<form method="POST" action="login.php">
 				
 				<label>Email:</label><br/>
-				<input type="text" class="inputFields"  value="<?php echo $_SESSION['email'] ?>"  name="email" required/><br/><br/>
+				<input type="text" class="inputFields"  name="email" required/><br/><br/>
 				
 				
 				<label>Password:</label><br/>
-				<input type="password" class="inputFields"  value="<?php echo $_SESSION['password'] ?>"  name="password" required/><br/><br/>
+				<input type="password" class="inputFields"  name="password" required/><br/><br/>
 				
-				<input type="checkbox" name="keep" />
-				<label>Keep me logged in</label><br/><br/>
+				
 			   
 				<input type="submit" name="submit" class="theButtons" value="login" />
 
