@@ -1,0 +1,40 @@
+a{
+	background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 0.35em;
+}
+.theButtons{
+	background-color: #f44336; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    max-width: 11vw;
+}
+input {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 2px solid red;
+}
+body{
+	background-color: #f2f2f2;
+}
+label{
+	word-spacing: -5px;
+	direction: rtl;
+	font-size: 20px;
+	font-weight: 700;
+}
